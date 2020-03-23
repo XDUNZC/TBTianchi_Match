@@ -58,9 +58,9 @@ class OmniglotTrain(Dataset):
         for charPath in os.listdir(os.path.join(dataPath, alphaPath)):
             datas[idx] = []
             imagefilePath = os.path.join(dataPath, alphaPath, charPath)
-            datas[idx].append((Image.open(imagefilePath)).resize((400, 400)))
+            datas[idx].append((Image.open(imagefilePath)).resize((105, 105)))
             vidoefilePath = os.path.join(dataPath, betaPath, charPath)
-            datas[idx].append((Image.open(vidoefilePath)).resize((400, 400)))
+            datas[idx].append((Image.open(vidoefilePath)).resize((105, 105)))
             idx += 1
         print("finish loading training dataset to memory")
         return datas, idx
@@ -129,9 +129,9 @@ class OmniglotTest(Dataset):
         for charPath in os.listdir(os.path.join(dataPath, alphaPath)):
             datas[idx] = []
             imagefilePath = os.path.join(dataPath, alphaPath, charPath)
-            datas[idx].append((Image.open(imagefilePath)).resize((400, 400)))
+            datas[idx].append((Image.open(imagefilePath)).resize((105, 105)))
             vidoefilePath = os.path.join(dataPath, betaPath, charPath)
-            datas[idx].append((Image.open(vidoefilePath)).resize((400, 400)))
+            datas[idx].append((Image.open(vidoefilePath)).resize((105, 105)))
             idx += 1
         print("finish loading testing dataset to memory")
         return datas, idx
