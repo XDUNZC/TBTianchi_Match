@@ -11,7 +11,6 @@ See requirements.txt
 ## run step
 - download dataset trainset_demo
 ```
-git clone https://github.com/brendenlake/omniglot.git
 unzip trainset_demo.zip
 # setup directory for saving models
 mkdir models
