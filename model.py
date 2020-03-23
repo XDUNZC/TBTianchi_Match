@@ -39,7 +39,7 @@ class Siamese(nn.Module):
         self.layer2 = self.make_layer(ResidualBlock, 128, 2, stride=2)
         self.layer3 = self.make_layer(ResidualBlock, 256, 2, stride=2)
         self.layer4 = self.make_layer(ResidualBlock, 512, 2, stride=2)
-        self.fc1 = nn.Linear(73728, 4096)
+        self.fc1 = nn.Linear(4608, 4096)
         self.fc2 = nn.Linear(4096, num_classes)
 
     def make_layer(self, block, channels, num_blocks, stride):
