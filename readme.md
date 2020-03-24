@@ -18,7 +18,7 @@ mkdir models
 - train and test by running
 ```shell
 python3 train.py --train_path trainset_demo/train \
-                 --test_path  trainset_demo/train \
+                 --test_path  trainset_demo/test \
                  --gpu_ids 1 \
                  --model_path models
 ```
