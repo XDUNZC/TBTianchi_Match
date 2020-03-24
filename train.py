@@ -119,19 +119,21 @@ if __name__ == '__main__':
             torch.save(net.state_dict(), Flags.model_path + '/model-inter-' + str(batch_id+1) + ".pt")
         if batch_id % Flags.test_every == 0:
             right, error = 0, 0
-            for _, (test1, test2) in enumerate(testLoader, 1):
-                if Flags.cuda:
-                    test1, test2 = test1.cuda(), test2.cuda()
-                test1, test2 = Variable(test1), Variable(test2)
-                output = net.forward(test1, test2).data.cpu().numpy()
-                pred = np.argmax(output)
-                if pred == 0:
-                    right += 1
-                else: error += 1
-            print('*'*70)
-            print('[%d]\tTest set\tcorrect:\t%d\terror:\t%d\tprecision:\t%f'%(batch_id, right, error, right*1.0/(right+error)))
-            print('*'*70)
-            queue.append(right*1.0/(right+error))
+            with torch.no_grad():
+                for _, (test1, test2) in enumerate(testLoader, 1):
+                    if Flags.cuda:
+                        test1, test2 = test1.cuda(), test2.cuda()
+                    test1, test2 = Variable(test1), Variable(test2)
+                    
+                    output = net.forward(test1, test2).data.cpu().numpy()
+                    pred = np.argmax(output)
+                    if pred == 0:
+                        right += 1
+                    else: error += 1
+                print('*'*70)
+                print('[%d]\tTest set\tcorrect:\t%d\terror:\t%d\tprecision:\t%f'%(batch_id, right, error, right*1.0/(right+error)))
+                print('*'*70)
+                queue.append(right*1.0/(right+error))
         train_loss.append(loss_val)
     #  learning_rate = learning_rate * 0.95
 
